@@ -130,7 +130,8 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="App" id="app">
+      <div onClick={async () => {}}> CLICK ME</div>
       <div className="search">
         <TextField
           id="outlined-basic"
@@ -258,82 +259,92 @@ function App() {
           min={1}
         />
       </div>
-      <div className="group">
+      <div className="group" id="subjects">
         {showArt && (
-          <Section search={search} obj={art} title="Art" steps={stepsLevel} />
+          <Section
+            search={search}
+            categories={art}
+            subject="Art"
+            steps={stepsLevel}
+          />
         )}
         {showComputingPreformal && (
           <Section
             search={search}
-            obj={computing_preformal}
-            title="Computing (Preformal)"
+            categories={computing_preformal}
+            subject="Computing (Preformal)"
             steps={stepsLevel}
           />
         )}
         {showComputingFormal && (
           <Section
             search={search}
-            obj={computing_formal}
-            title="Computing (Formal)"
+            categories={computing_formal}
+            subject="Computing (Formal)"
             steps={stepsLevel}
           />
         )}
         {showEnglish && (
           <Section
             search={search}
-            obj={english}
-            title="English"
+            categories={english}
+            subject="English"
             steps={stepsLevel}
           />
         )}
         {showFoodTech && (
           <Section
             search={search}
-            obj={food_tech}
-            title="Food Tech"
+            categories={food_tech}
+            subject="Food Tech"
             steps={stepsLevel}
           />
         )}
         {showGlobalStudies && (
           <Section
             search={search}
-            obj={global_studies}
-            title="Global Studies"
+            categories={global_studies}
+            subject="Global Studies"
             steps={stepsLevel}
           />
         )}
         {showMaths && (
           <Section
             search={search}
-            obj={maths}
-            title="Maths"
+            categories={maths}
+            subject="Maths"
             steps={stepsLevel}
           />
         )}
         {showMusic && (
           <Section
             search={search}
-            obj={music}
-            title="Music"
+            categories={music}
+            subject="Music"
             steps={stepsLevel}
           />
         )}
         {showPE && (
-          <Section search={search} obj={pe} title="PE" steps={stepsLevel} />
+          <Section
+            search={search}
+            categories={pe}
+            subject="PE"
+            steps={stepsLevel}
+          />
         )}
         {showPSHEPrimary && (
           <Section
             search={search}
-            obj={pshe_primary}
-            title="PSHE - Primary"
+            categories={pshe_primary}
+            subject="PSHE - Primary"
             steps={stepsLevel}
           />
         )}
         {showScience && (
           <Section
             search={search}
-            obj={science}
-            title="Science"
+            categories={science}
+            subject="Science"
             steps={stepsLevel}
           />
         )}
@@ -342,9 +353,7 @@ function App() {
         className="footer"
         style={{ display: isFooterVisible ? "flex" : "none" }}
       >
-        <p style={{ all: "unset" }}>
-          For any problems or additions please contact&nbsp;
-        </p>
+        For any problems or additions please contact&nbsp;
         <a href="mailto:stepshelperwebmaster@gmail.com">
           StepsHelperWebMaster@gmail.com
         </a>

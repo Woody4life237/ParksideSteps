@@ -1,11 +1,11 @@
 export default function Section({
-  title,
-  obj,
+  subject,
+  categories,
   search,
   steps,
 }: {
-  title: string;
-  obj: any;
+  subject: string;
+  categories: any;
   search: string;
   steps?: number[];
 }) {
@@ -17,17 +17,20 @@ export default function Section({
   ) {
     let filteredLines = getLines(lines);
 
-    return filteredLines.map((line: string) => {
+    return filteredLines.map((line: string, index: number) => {
       return (
         <div
           className="line"
+          id={[subject, category, subcategory, index + 1]
+            .filter(Boolean)
+            .join("-")}
           onClick={(e) =>
             copyToClipboard({
               e,
               subject,
               category,
               subcategory,
-              line,
+              index: index + 1,
             })
           }
         >
@@ -42,52 +45,98 @@ export default function Section({
     subject,
     category,
     subcategory,
-    line,
+    index,
   }: {
     e: any;
     subject: string;
     category?: string;
     subcategory?: string;
-    line: string;
+    index: number;
   }) {
-    let headingEle = document.createElement("div");
-    let subheadingEle = document.createElement("div");
-    let subsubheadingEle = document.createElement("div");
-    let lineEle = document.createElement("div");
+    let subjectid = subject;
+    let categoryid = [subject, category].join("-");
+    let subcategoryid = [subject, category, subcategory].join("-");
+    let lineid = [subject, category, subcategory, index]
+      .filter(Boolean)
+      .join("-");
 
-    headingEle.textContent = subject;
-    headingEle.style.backgroundColor = "#8885c0";
-    headingEle.style.display = "inline-block";
-    headingEle.style.fontFamily = "Century Gothic";
-    document.body.appendChild(headingEle);
-
-    if (category) {
-      subheadingEle.textContent = category;
-      subheadingEle.style.backgroundColor = "#aaaaaa";
-      subheadingEle.style.display = "inline-block";
-      subheadingEle.style.fontFamily = "Century Gothic";
-      document.body.appendChild(subheadingEle);
-    }
-    if (subcategory) {
-      subsubheadingEle.textContent = subcategory;
-      subsubheadingEle.style.backgroundColor = "#ff99ff";
-      subsubheadingEle.style.display = "inline-block";
-      subsubheadingEle.style.fontFamily = "Century Gothic";
-      document.body.appendChild(subsubheadingEle);
-    }
-
-    lineEle.textContent = line;
-    lineEle.style.backgroundColor = "#66ccff";
-    lineEle.style.display = "inline-block";
-    lineEle.style.fontFamily = "Century Gothic";
-    document.body.appendChild(lineEle);
-
-    // Create a range object and select the combined content
     var range = document.createRange();
-    range.selectNode(headingEle);
-    range.setEndAfter(lineEle); // Selects up to the end of the second element
+    let subjectNode = document.getElementById(subjectid);
+    let subjectNodeCopy = subjectNode?.cloneNode();
+    if (!subjectNodeCopy) {
+      console.log("NO SUBJECT NODE");
+      return;
+    }
+    //@ts-ignore
+    subjectNodeCopy.id = "tempSubject";
+    subjectNodeCopy.appendChild(
+      //@ts-ignore
+      subjectNode?.getElementsByClassName("heading")[0].cloneNode(true)
+    );
 
-    // Add the selected content to the clipboard
+    let categoryNodeCopy: Node | undefined;
+    if (category) {
+      let categoryNode = document.getElementById(categoryid);
+      categoryNodeCopy = categoryNode?.cloneNode();
+      if (!categoryNodeCopy) {
+        console.log("NO CATEGORY NODE");
+        return;
+      }
+      //@ts-ignore
+      categoryNodeCopy.id = "tempCategory";
+      categoryNodeCopy.appendChild(
+        //@ts-ignore
+        categoryNode?.getElementsByClassName("subheading")[0].cloneNode(true)
+      );
+    }
+
+    let subcategoryNodeCopy: Node | undefined;
+    if (subcategory) {
+      let subcategoryNode = document.getElementById(subcategoryid);
+      subcategoryNodeCopy = subcategoryNode?.cloneNode();
+      if (!subcategoryNodeCopy) {
+        console.log("NO SUB CATEGORY NODE");
+        return;
+      }
+      //@ts-ignore
+      subcategoryNodeCopy.id = "tempSubCategory";
+      subcategoryNodeCopy.appendChild(
+        //@ts-ignore
+        subcategoryNode
+          ?.getElementsByClassName("subsubheading")[0]
+          .cloneNode(true)
+      );
+    }
+
+    let lineNode = document.getElementById(lineid)?.cloneNode(true);
+    if (!lineNode) {
+      console.log("NO LINE NODE");
+      return;
+    }
+    //@ts-ignore
+    lineNode.id = "tempLine";
+
+    if (subcategoryNodeCopy) {
+      subcategoryNodeCopy.appendChild(lineNode);
+      if (categoryNodeCopy) {
+        categoryNodeCopy.appendChild(subcategoryNodeCopy);
+        subjectNodeCopy.appendChild(categoryNodeCopy);
+      }
+    } else if (categoryNodeCopy) {
+      categoryNodeCopy.appendChild(lineNode);
+      subjectNodeCopy.appendChild(categoryNodeCopy);
+    } else {
+      subjectNodeCopy.appendChild(lineNode);
+    }
+
+    let subjectsNode = document.getElementById("subjects");
+    if (!subjectsNode) {
+      return;
+    }
+    subjectsNode.appendChild(subjectNodeCopy);
+
+    range.selectNode(subjectNodeCopy);
+
     var selection = window.getSelection();
     selection?.removeAllRanges();
     selection?.addRange(range);
@@ -112,20 +161,12 @@ export default function Section({
       setTimeout(() => {
         document.body.removeChild(popup);
       }, 750);
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
 
-    // Clear the selection
     selection?.removeAllRanges();
-
-    // Remove the dummy elements from the body
-    document.body.removeChild(headingEle);
-    if (category) {
-      document.body.removeChild(subheadingEle);
-    }
-    if (subcategory) {
-      document.body.removeChild(subsubheadingEle);
-    }
-    document.body.removeChild(lineEle);
+    subjectsNode.removeChild(subjectNodeCopy);
   }
 
   function getLines(lines: []) {
@@ -159,8 +200,8 @@ export default function Section({
     if (!search && !steps) {
       show = true;
     } else {
-      Object.keys(obj).forEach((category) => {
-        if (isShowCategory(obj[category])) {
+      Object.keys(categories).forEach((category) => {
+        if (isShowCategory(categories[category])) {
           show = true;
         }
       });
@@ -210,48 +251,55 @@ export default function Section({
   return (
     <div
       className="group"
+      id={subject}
       style={{ display: isShowSubject() ? "flex" : "none" }}
     >
-      <div id={title} className="heading">
-        {title}
+      <div id={subject} className="heading">
+        {subject}
       </div>
-      {Object.keys(obj).map((key) => {
+      {Object.keys(categories).map((category) => {
         return (
           <div
             className="group"
-            style={{ display: isShowCategory(obj[key]) ? "flex" : "none" }}
+            id={`${subject}-${category}`}
+            style={{
+              display: isShowCategory(categories[category]) ? "flex" : "none",
+            }}
           >
-            <div className="subheading">{key}</div>
-            {Array.isArray(obj[key])
-              ? showLines(obj[key], title, key)
-              : Object.keys(obj[key]).map((subheading) => {
+            <div className="subheading">{category}</div>
+            {Array.isArray(categories[category])
+              ? showLines(categories[category], subject, category)
+              : Object.keys(categories[category]).map((subcategory) => {
                   return (
                     <div
                       className="group"
+                      id={`${subject}-${category}-${subcategory}`}
                       style={{
                         display: isShowSubCategory(
-                          obj[key][subheading],
-                          subheading
+                          categories[category][subcategory],
+                          subcategory
                         )
                           ? "flex"
                           : "none",
                       }}
                     >
-                      <div className="subsubheading">{subheading}</div>
-                      {Array.isArray(obj[key][subheading])
+                      <div className="subsubheading">{subcategory}</div>
+                      {Array.isArray(categories[category][subcategory])
                         ? showLines(
-                            obj[key][subheading],
-                            title,
-                            key,
-                            subheading
+                            categories[category][subcategory],
+                            subject,
+                            category,
+                            subcategory
                           )
-                        : Object.keys(obj[key][subheading]).map(
-                            (subsubheading) => {
+                        : Object.keys(categories[category][subcategory]).map(
+                            (subsubcategory) => {
                               return showLines(
-                                obj[key][subheading][subsubheading],
-                                title,
-                                key,
-                                subheading
+                                categories[category][subcategory][
+                                  subsubcategory
+                                ],
+                                subject,
+                                category,
+                                subcategory
                               );
                             }
                           )}
