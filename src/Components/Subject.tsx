@@ -21,11 +21,12 @@ export default function Section({
       return (
         <div
           className="line"
-          onClick={() =>
+          onClick={(e) =>
             copyToClipboard({
-              subject: subject,
-              category: category,
-              subcategory: subcategory,
+              e,
+              subject,
+              category,
+              subcategory,
               line,
             })
           }
@@ -37,11 +38,13 @@ export default function Section({
   }
 
   function copyToClipboard({
+    e,
     subject,
     category,
     subcategory,
     line,
   }: {
+    e: any;
     subject: string;
     category?: string;
     subcategory?: string;
@@ -92,6 +95,23 @@ export default function Section({
     try {
       // Execute the copy command
       document.execCommand("copy");
+
+      let popup = document.createElement("div");
+      popup.style.display = "block";
+      popup.style.position = "absolute";
+      popup.style.backgroundColor = "lightgrey";
+      popup.style.padding = "4px";
+      popup.style.borderRadius = "8px";
+      popup.style.left = `${e.pageX}px`;
+      popup.style.top = `${e.pageY}px`;
+      popup.style.zIndex = "99999";
+      popup.style.opacity = ".85";
+      popup.textContent = "Copied to Clipboard";
+      document.body.appendChild(popup);
+
+      setTimeout(() => {
+        document.body.removeChild(popup);
+      }, 750);
     } catch (err) {}
 
     // Clear the selection
