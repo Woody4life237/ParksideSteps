@@ -1,3 +1,5 @@
+import { toUSVString } from "util";
+
 export default function Section({
   title,
   obj,
@@ -129,11 +131,9 @@ export default function Section({
   }
 
   function getLines(lines: []) {
-    let filteredLines = lines.filter((line: string) => {
-      return !search || line.toLowerCase().includes(search);
+    return lines.filter((line: string) => {
+      return !search || line.toLowerCase().includes(search.toLowerCase());
     });
-
-    return filteredLines;
   }
 
   function isShowStep(title: string) {
@@ -176,7 +176,7 @@ export default function Section({
       show = true;
     } else if (Array.isArray(category)) {
       category.forEach((line) => {
-        if (line.includes(search)) {
+        if (line.toLowerCase().includes(search.toLowerCase())) {
           show = true;
         }
       });
@@ -201,7 +201,7 @@ export default function Section({
     if (search) {
       show = false;
       subcategory.forEach((line) => {
-        if (line.includes(search)) {
+        if (line.toLowerCase().includes(search.toLowerCase())) {
           show = true;
         }
       });
