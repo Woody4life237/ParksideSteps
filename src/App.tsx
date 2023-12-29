@@ -111,6 +111,12 @@ function App() {
     showScience,
   ]);
 
+  const [isFooterVisible, setIsFooterVisible] = useState(true);
+
+  const closeFooter = () => {
+    setIsFooterVisible(false);
+  };
+
   function showAllChange(value) {
     setShowArt(value);
     setShowComputingPreformal(value);
@@ -336,6 +342,23 @@ function App() {
           />
         )}
       </div>
+      <footer
+        className="footer"
+        style={{ display: isFooterVisible ? "flex" : "none" }}
+      >
+        <p style={{ all: "unset" }}>
+          For any problems or additions please contact&nbsp;
+        </p>
+        <a href="mailto:stepshelperwebmaster@gmail.com">
+          StepsHelperWebMaster@gmail.com
+        </a>
+        <button
+          className="close-button"
+          onClick={() => setIsFooterVisible(false)}
+        >
+          close
+        </button>
+      </footer>
     </div>
   );
 }
