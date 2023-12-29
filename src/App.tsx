@@ -113,10 +113,6 @@ function App() {
 
   const [isFooterVisible, setIsFooterVisible] = useState(true);
 
-  const closeFooter = () => {
-    setIsFooterVisible(false);
-  };
-
   function showAllChange(value) {
     setShowArt(value);
     setShowComputingPreformal(value);
