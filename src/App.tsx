@@ -1,5 +1,5 @@
 import { Checkbox, Slider, TextField } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Section from "./Components/Subject";
 import {
@@ -44,6 +44,89 @@ function App() {
     setSearch(lowerCase);
   };
 
+  let showAll =
+    showArt &&
+    showComputingFormal &&
+    showComputingPreformal &&
+    showEnglish &&
+    showFoodTech &&
+    showGlobalStudies &&
+    showMaths &&
+    showMusic &&
+    showPE &&
+    showPSHEPrimary &&
+    showPSHESecondary &&
+    showScience;
+
+  const [showSome, setShowSome] = useState(false);
+
+  useEffect(() => {
+    if (
+      showArt &&
+      showComputingFormal &&
+      showComputingPreformal &&
+      showEnglish &&
+      showFoodTech &&
+      showGlobalStudies &&
+      showMaths &&
+      showMusic &&
+      showPE &&
+      showPSHEPrimary &&
+      showPSHESecondary &&
+      showScience
+    ) {
+      setShowSome(false);
+    } else if (
+      !(
+        showArt ||
+        showComputingFormal ||
+        showComputingPreformal ||
+        showEnglish ||
+        showFoodTech ||
+        showGlobalStudies ||
+        showMaths ||
+        showMusic ||
+        showPE ||
+        showPSHEPrimary ||
+        showPSHESecondary ||
+        showScience
+      )
+    ) {
+      setShowSome(false);
+    } else {
+      setShowSome(true);
+    }
+  }, [
+    showArt,
+    showComputingFormal,
+    showComputingPreformal,
+    showEnglish,
+    showFoodTech,
+    showGlobalStudies,
+    showMaths,
+    showMusic,
+    showPE,
+    showPSHEPrimary,
+    showPSHESecondary,
+    showScience,
+  ]);
+
+  function showAllChange(value) {
+    setShowArt(value);
+    setShowComputingPreformal(value);
+    setShowComputingFormal(value);
+    setShowEnglish(value);
+    setShowFoodTech(value);
+    setShowGlobalStudies(value);
+    setShowGlobalStudies(value);
+    setShowMaths(value);
+    setShowMusic(value);
+    setShowPE(value);
+    setShowPSHEPrimary(value);
+    setShowPSHESecondary(value);
+    setShowScience(value);
+  }
+
   return (
     <div className="App">
       <div className="search">
@@ -56,6 +139,15 @@ function App() {
         />
       </div>
       <div className="checkboxes">
+        <div className="checkbox">
+          All
+          <Checkbox
+            style={{ padding: "4px" }}
+            checked={showAll}
+            indeterminate={showSome}
+            onChange={(e) => showAllChange(e.target.checked)}
+          />
+        </div>
         <div className="checkbox">
           Art
           <Checkbox
