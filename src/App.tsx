@@ -89,14 +89,18 @@ function App() {
     showGlobalStudies &&
     showMaths &&
     showMusic &&
-    showSteps &&
     showPE &&
     showPSHEPrimary &&
     showPSHESecondary &&
     showScience;
 
   let showAllSecondary =
-    showFunEnglish && showFunICT && showFunMaths && showLifeSkills && showRTG;
+    showFunEnglish &&
+    showFunICT &&
+    showFunMaths &&
+    showLifeSkills &&
+    showSteps &&
+    showRTG;
 
   const [showSome, setShowSome] = useState(false);
 
