@@ -333,32 +333,36 @@ function App() {
         />
       </div>
       <div className="checkboxes">
-        <div className="checkbox">
-          All
-          <Checkbox
-            style={{ padding: "4px" }}
-            checked={showAll}
-            indeterminate={showSome}
-            onChange={(e) => showAllChange(e.target.checked)}
-          />
-        </div>
-        <div className="checkbox">
-          Primary
-          <Checkbox
-            style={{ padding: "4px" }}
-            checked={showAllPrimary}
-            indeterminate={showSomePrimary}
-            onChange={(e) => showAllChangePrimary(e.target.checked)}
-          />
-        </div>
-        <div className="checkbox">
-          Secondary
-          <Checkbox
-            style={{ padding: "4px" }}
-            checked={showAllSecondary}
-            indeterminate={showSomeSecondary}
-            onChange={(e) => showAllChangeSecondary(e.target.checked)}
-          />
+        <div className="checkboxes">
+          <div className="checkbox">
+            All
+            <Checkbox
+              style={{ padding: "4px" }}
+              checked={showAll}
+              indeterminate={showSome}
+              onChange={(e) => showAllChange(e.target.checked)}
+            />
+          </div>
+          <div className="checkbox">
+            Primary
+            <Checkbox
+              style={{ padding: "4px" }}
+              checked={showAllPrimary}
+              indeterminate={showSomePrimary}
+              onChange={(e) => showAllChangePrimary(e.target.checked)}
+              color={"success"}
+            />
+          </div>
+          <div className="checkbox">
+            Secondary
+            <Checkbox
+              style={{ padding: "4px" }}
+              checked={showAllSecondary}
+              indeterminate={showSomeSecondary}
+              onChange={(e) => showAllChangeSecondary(e.target.checked)}
+              color={"error"}
+            />
+          </div>
         </div>
         <div className="checkbox">
           Art
@@ -374,6 +378,7 @@ function App() {
             style={{ padding: "4px" }}
             checked={showAutism}
             onChange={(e) => setShowAutism(e.target.checked)}
+            color={"error"}
           />
         </div>
         <div className="checkbox">
@@ -414,6 +419,7 @@ function App() {
             style={{ padding: "4px" }}
             checked={showFunEnglish}
             onChange={(e) => setShowFunEnglish(e.target.checked)}
+            color={"error"}
           />
         </div>
         <div className="checkbox">
@@ -422,6 +428,7 @@ function App() {
             style={{ padding: "4px" }}
             checked={showFunICT}
             onChange={(e) => setShowFunICT(e.target.checked)}
+            color={"error"}
           />
         </div>
         <div className="checkbox">
@@ -430,6 +437,7 @@ function App() {
             style={{ padding: "4px" }}
             checked={showFunMaths}
             onChange={(e) => setShowFunMaths(e.target.checked)}
+            color={"error"}
           />
         </div>
         <div className="checkbox">
@@ -446,6 +454,7 @@ function App() {
             style={{ padding: "4px" }}
             checked={showLifeSkills}
             onChange={(e) => setShowLifeSkills(e.target.checked)}
+            color={"error"}
           />
         </div>
         <div className="checkbox">
@@ -470,6 +479,7 @@ function App() {
             style={{ padding: "4px" }}
             checked={showSteps}
             onChange={(e) => setShowSteps(e.target.checked)}
+            color={"error"}
           />
         </div>
         <div className="checkbox">
@@ -502,6 +512,7 @@ function App() {
             style={{ padding: "4px" }}
             checked={showRTG}
             onChange={(e) => setShowRTG(e.target.checked)}
+            color={"error"}
           />
         </div>
         <div className="checkbox">
