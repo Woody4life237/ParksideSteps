@@ -273,7 +273,7 @@ function App() {
     if (window.innerWidth < 700) {
       setIsFooterVisible(false);
     }
-  }, [window]);
+  }, []);
 
   function showAllChange(value) {
     setShowAutism(value);
@@ -350,7 +350,6 @@ function App() {
               checked={showAllPrimary}
               indeterminate={showSomePrimary}
               onChange={(e) => showAllChangePrimary(e.target.checked)}
-              color={"success"}
             />
           </div>
           <div className="checkbox">
@@ -360,7 +359,6 @@ function App() {
               checked={showAllSecondary}
               indeterminate={showSomeSecondary}
               onChange={(e) => showAllChangeSecondary(e.target.checked)}
-              color={"error"}
             />
           </div>
         </div>
@@ -378,7 +376,6 @@ function App() {
             style={{ padding: "4px" }}
             checked={showAutism}
             onChange={(e) => setShowAutism(e.target.checked)}
-            color={"error"}
           />
         </div>
         <div className="checkbox">
@@ -419,7 +416,6 @@ function App() {
             style={{ padding: "4px" }}
             checked={showFunEnglish}
             onChange={(e) => setShowFunEnglish(e.target.checked)}
-            color={"error"}
           />
         </div>
         <div className="checkbox">
@@ -428,7 +424,6 @@ function App() {
             style={{ padding: "4px" }}
             checked={showFunICT}
             onChange={(e) => setShowFunICT(e.target.checked)}
-            color={"error"}
           />
         </div>
         <div className="checkbox">
@@ -437,7 +432,6 @@ function App() {
             style={{ padding: "4px" }}
             checked={showFunMaths}
             onChange={(e) => setShowFunMaths(e.target.checked)}
-            color={"error"}
           />
         </div>
         <div className="checkbox">
@@ -454,7 +448,6 @@ function App() {
             style={{ padding: "4px" }}
             checked={showLifeSkills}
             onChange={(e) => setShowLifeSkills(e.target.checked)}
-            color={"error"}
           />
         </div>
         <div className="checkbox">
@@ -479,7 +472,6 @@ function App() {
             style={{ padding: "4px" }}
             checked={showSteps}
             onChange={(e) => setShowSteps(e.target.checked)}
-            color={"error"}
           />
         </div>
         <div className="checkbox">
@@ -512,7 +504,6 @@ function App() {
             style={{ padding: "4px" }}
             checked={showRTG}
             onChange={(e) => setShowRTG(e.target.checked)}
-            color={"error"}
           />
         </div>
         <div className="checkbox">
