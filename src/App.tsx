@@ -269,6 +269,12 @@ function App() {
 
   const [isFooterVisible, setIsFooterVisible] = useState(true);
 
+  useEffect(() => {
+    if (window.innerWidth < 700) {
+      setIsFooterVisible(false);
+    }
+  });
+
   function showAllChange(value) {
     setShowAutism(value);
     setShowArt(value);
