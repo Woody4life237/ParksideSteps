@@ -13,14 +13,15 @@ export default function Section({
     lines: [],
     subject: string,
     category?: string,
-    subcategory?: string
+    subcategory?: string,
+    subsubcategory?: string
   ) {
     let filteredLines = getLines(lines);
     return filteredLines.map((line: string, index: number) => {
       return (
         <div
           className="line"
-          id={[subject, category, subcategory, index + 1]
+          id={[subject, category, subcategory, subsubcategory, index + 1]
             .filter(Boolean)
             .join("-")}
           onClick={(e) =>
@@ -29,6 +30,7 @@ export default function Section({
               subject,
               category,
               subcategory,
+              subsubcategory,
               index: index + 1,
             })
           }
@@ -44,18 +46,26 @@ export default function Section({
     subject,
     category,
     subcategory,
+    subsubcategory,
     index,
   }: {
     e: any;
     subject: string;
     category?: string;
     subcategory?: string;
+    subsubcategory?: string;
     index: number;
   }) {
     let subjectid = subject;
     let categoryid = [subject, category].join("-");
     let subcategoryid = [subject, category, subcategory].join("-");
-    let lineid = [subject, category, subcategory, index]
+    let subsubcategoryid = [
+      subject,
+      category,
+      subcategory,
+      subsubcategory,
+    ].join("-");
+    let lineid = [subject, category, subcategory, subsubcategory, index]
       .filter(Boolean)
       .join("-");
 
@@ -107,6 +117,24 @@ export default function Section({
       );
     }
 
+    let subsubcategoryNodeCopy: Node | undefined;
+    if (subsubcategory) {
+      let subsubcategoryNode = document.getElementById(subsubcategoryid);
+      subsubcategoryNodeCopy = subsubcategoryNode?.cloneNode();
+      if (!subsubcategoryNodeCopy) {
+        console.log("NO SUB SUB CATEGORY NODE");
+        return;
+      }
+      //@ts-ignore
+      subsubcategoryNodeCopy.id = "tempSubSubCategory";
+      subsubcategoryNodeCopy.appendChild(
+        //@ts-ignore
+        subsubcategoryNode
+          ?.getElementsByClassName("subsubcategory")[0]
+          .cloneNode(true)
+      );
+    }
+
     let lineNode = document.getElementById(lineid)?.cloneNode(true);
     if (!lineNode) {
       console.log("NO LINE NODE");
@@ -115,7 +143,16 @@ export default function Section({
     //@ts-ignore
     lineNode.id = "tempLine";
 
-    if (subcategoryNodeCopy) {
+    if (subsubcategoryNodeCopy) {
+      subsubcategoryNodeCopy.appendChild(lineNode);
+      if (subcategoryNodeCopy) {
+        subcategoryNodeCopy.appendChild(subsubcategoryNodeCopy);
+        if (categoryNodeCopy) {
+          categoryNodeCopy.appendChild(subcategoryNodeCopy);
+          subjectNodeCopy.appendChild(categoryNodeCopy);
+        }
+      }
+    } else if (subcategoryNodeCopy) {
       subcategoryNodeCopy.appendChild(lineNode);
       if (categoryNodeCopy) {
         categoryNodeCopy.appendChild(subcategoryNodeCopy);
@@ -345,7 +382,8 @@ export default function Section({
                                     ],
                                     subject,
                                     category,
-                                    subcategory
+                                    subcategory,
+                                    subsubcategory
                                   )}
                                 </div>
                               );
