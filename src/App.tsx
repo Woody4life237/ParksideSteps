@@ -273,7 +273,7 @@ function App() {
     if (window.innerWidth < 700) {
       setIsFooterVisible(false);
     }
-  });
+  }, [window]);
 
   function showAllChange(value) {
     setShowAutism(value);
