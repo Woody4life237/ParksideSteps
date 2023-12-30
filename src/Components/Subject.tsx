@@ -230,19 +230,27 @@ export default function Section({
   }
 
   function isShowSubCategory(subcategory, name) {
-    let show = false;
-    if (!search && !steps) {
-      show = true;
-    } else if (Array.isArray(subcategory)) {
+    let show = true;
+
+    if (steps && !isShowStep(name)) {
+      show = false;
+    }
+    if (Array.isArray(subcategory)) {
+      let foundLine = false;
       subcategory.forEach((line) => {
         if (line.toLowerCase().includes(search.toLowerCase())) {
-          show = true;
+          foundLine = true;
         }
       });
+      if (!foundLine) {
+        show = false;
+      }
     } else {
       Object.keys(subcategory).forEach((subsubcategory) => {
-        if (isShowSubSubCategory(subcategory[subsubcategory], subsubcategory)) {
-          show = true;
+        if (
+          !isShowSubSubCategory(subcategory[subsubcategory], subsubcategory)
+        ) {
+          show = false;
         }
       });
     }
@@ -250,24 +258,20 @@ export default function Section({
   }
 
   function isShowSubSubCategory(subsubcategory, name) {
-    let show = false;
-    if (!search && !steps) {
-      show = true;
-    }
-    if (steps) {
-      show = isShowStep(name);
+    let show = true;
+    if (steps && !isShowStep(name)) {
+      show = false;
     }
     if (search) {
-      show = false;
-      if (!Array.isArray(subsubcategory)) {
-        console.log(subsubcategory);
-        return;
-      }
+      let foundLine = false;
       subsubcategory.forEach((line) => {
         if (line.toLowerCase().includes(search.toLowerCase())) {
-          show = true;
+          foundLine = true;
         }
       });
+      if (!foundLine) {
+        show = false;
+      }
     }
     return show;
   }
