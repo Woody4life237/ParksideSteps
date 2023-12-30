@@ -79,6 +79,25 @@ function App() {
     showRTG &&
     showScience;
 
+  let showAllPrimary =
+    showAutism &&
+    showArt &&
+    showComputingFormal &&
+    showComputingPreformal &&
+    showEnglish &&
+    showFoodTech &&
+    showGlobalStudies &&
+    showMaths &&
+    showMusic &&
+    showSteps &&
+    showPE &&
+    showPSHEPrimary &&
+    showPSHESecondary &&
+    showScience;
+
+  let showAllSecondary =
+    showFunEnglish && showFunICT && showFunMaths && showLifeSkills && showRTG;
+
   const [showSome, setShowSome] = useState(false);
 
   useEffect(() => {
@@ -153,6 +172,97 @@ function App() {
     showScience,
   ]);
 
+  const [showSomePrimary, setShowSomePrimary] = useState(false);
+
+  useEffect(() => {
+    if (
+      showAutism &&
+      showArt &&
+      showComputingFormal &&
+      showComputingPreformal &&
+      showEnglish &&
+      showFoodTech &&
+      showGlobalStudies &&
+      showMaths &&
+      showMusic &&
+      showPE &&
+      showPSHEPrimary &&
+      showPSHESecondary &&
+      showScience
+    ) {
+      setShowSomePrimary(false);
+    } else if (
+      !(
+        showAutism ||
+        showArt ||
+        showComputingFormal ||
+        showComputingPreformal ||
+        showEnglish ||
+        showFoodTech ||
+        showGlobalStudies ||
+        showMaths ||
+        showMusic ||
+        showPE ||
+        showPSHEPrimary ||
+        showPSHESecondary ||
+        showScience
+      )
+    ) {
+      setShowSomePrimary(false);
+    } else {
+      setShowSomePrimary(true);
+    }
+  }, [
+    showAutism,
+    showArt,
+    showComputingFormal,
+    showComputingPreformal,
+    showEnglish,
+    showFoodTech,
+    showGlobalStudies,
+    showMaths,
+    showMusic,
+    showPE,
+    showPSHEPrimary,
+    showPSHESecondary,
+    showScience,
+  ]);
+
+  const [showSomeSecondary, setShowSomeSecondary] = useState(false);
+
+  useEffect(() => {
+    if (
+      showFunEnglish &&
+      showFunICT &&
+      showFunMaths &&
+      showLifeSkills &&
+      showSteps &&
+      showRTG
+    ) {
+      setShowSomeSecondary(false);
+    } else if (
+      !(
+        showFunEnglish ||
+        showFunICT ||
+        showFunMaths ||
+        showLifeSkills ||
+        showSteps ||
+        showRTG
+      )
+    ) {
+      setShowSomeSecondary(false);
+    } else {
+      setShowSomeSecondary(true);
+    }
+  }, [
+    showFunEnglish,
+    showFunICT,
+    showFunMaths,
+    showLifeSkills,
+    showSteps,
+    showRTG,
+  ]);
+
   const [isFooterVisible, setIsFooterVisible] = useState(true);
 
   function showAllChange(value) {
@@ -166,6 +276,24 @@ function App() {
     setShowFunMaths(value);
     setShowFunICT(value);
     setShowGlobalStudies(value);
+    setShowMaths(value);
+    setShowMusic(value);
+    setShowPE(value);
+    setShowPSHEPrimary(value);
+    setShowPSHESecondary(value);
+    setShowScience(value);
+    setShowLifeSkills(value);
+    setShowSteps(value);
+    setShowRTG(value);
+  }
+
+  function showAllChangePrimary(value) {
+    setShowAutism(value);
+    setShowArt(value);
+    setShowComputingPreformal(value);
+    setShowComputingFormal(value);
+    setShowEnglish(value);
+    setShowFoodTech(value);
     setShowGlobalStudies(value);
     setShowMaths(value);
     setShowMusic(value);
@@ -173,6 +301,11 @@ function App() {
     setShowPSHEPrimary(value);
     setShowPSHESecondary(value);
     setShowScience(value);
+  }
+  function showAllChangeSecondary(value) {
+    setShowFunEnglish(value);
+    setShowFunMaths(value);
+    setShowFunICT(value);
     setShowLifeSkills(value);
     setShowSteps(value);
     setShowRTG(value);
@@ -197,6 +330,24 @@ function App() {
             checked={showAll}
             indeterminate={showSome}
             onChange={(e) => showAllChange(e.target.checked)}
+          />
+        </div>
+        <div className="checkbox">
+          Primary
+          <Checkbox
+            style={{ padding: "4px" }}
+            checked={showAllPrimary}
+            indeterminate={showSomePrimary}
+            onChange={(e) => showAllChangePrimary(e.target.checked)}
+          />
+        </div>
+        <div className="checkbox">
+          Secondary
+          <Checkbox
+            style={{ padding: "4px" }}
+            checked={showAllSecondary}
+            indeterminate={showSomeSecondary}
+            onChange={(e) => showAllChangeSecondary(e.target.checked)}
           />
         </div>
         <div className="checkbox">
