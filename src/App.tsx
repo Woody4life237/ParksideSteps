@@ -304,7 +304,7 @@ function App() {
           />
         </div>
         <div className="checkbox">
-          Parkside Steps
+          Parkside Foundation
           <Checkbox
             style={{ padding: "4px" }}
             checked={showSteps}
@@ -472,7 +472,7 @@ function App() {
           <Section
             search={search}
             categories={parkside_steps}
-            subject="Parkside Steps Foundation"
+            subject="Parkside Foundation"
             steps={steps_level}
           />
         )}

@@ -233,14 +233,15 @@ export default function Section({
     let show = false;
     if (!search && !steps) {
       show = true;
-    }
-    if (steps) {
-      show = isShowStep(name);
-    }
-    if (search) {
-      show = false;
+    } else if (Array.isArray(subcategory)) {
       subcategory.forEach((line) => {
         if (line.toLowerCase().includes(search.toLowerCase())) {
+          show = true;
+        }
+      });
+    } else {
+      Object.keys(subcategory).forEach((subsubcategory) => {
+        if (isShowSubSubCategory(subcategory[subsubcategory], subsubcategory)) {
           show = true;
         }
       });
@@ -258,6 +259,10 @@ export default function Section({
     }
     if (search) {
       show = false;
+      if (!Array.isArray(subsubcategory)) {
+        console.log(subsubcategory);
+        return;
+      }
       subsubcategory.forEach((line) => {
         if (line.toLowerCase().includes(search.toLowerCase())) {
           show = true;
