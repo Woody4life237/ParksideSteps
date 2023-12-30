@@ -1,6 +1,6 @@
 {
-  "name": "ellen-website",
-  "version": "0.1.0",
+  "name": "parkside-steps-helper",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@emotion/styled": "^11.11.0",
