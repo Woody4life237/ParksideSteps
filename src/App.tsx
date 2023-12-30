@@ -1,6 +1,6 @@
 import { Checkbox, Slider, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
-import "./App.css";
+import "./App.scss";
 import Section from "./Components/Subject";
 import {
   art,
@@ -343,7 +343,7 @@ function App() {
               onChange={(e) => showAllChange(e.target.checked)}
             />
           </div>
-          <div className="checkbox">
+          <div className="checkbox primary">
             Primary
             <Checkbox
               style={{ padding: "4px" }}
@@ -352,7 +352,7 @@ function App() {
               onChange={(e) => showAllChangePrimary(e.target.checked)}
             />
           </div>
-          <div className="checkbox">
+          <div className="checkbox secondary">
             Secondary
             <Checkbox
               style={{ padding: "4px" }}
@@ -362,157 +362,162 @@ function App() {
             />
           </div>
         </div>
-        <div className="checkbox">
-          Art
-          <Checkbox
-            style={{ padding: "4px" }}
-            checked={showArt}
-            onChange={(e) => setShowArt(e.target.checked)}
-          />
+        <div className="checkboxes">
+          <div className="checkbox primary">
+            Art
+            <Checkbox
+              style={{ padding: "4px" }}
+              checked={showArt}
+              onChange={(e) => setShowArt(e.target.checked)}
+            />
+          </div>
+          <div className="checkbox primary">
+            Computing (Preformal)
+            <Checkbox
+              style={{ padding: "4px" }}
+              checked={showComputingPreformal}
+              onChange={(e) => setShowComputingPreformal(e.target.checked)}
+            />
+          </div>
+          <div className="checkbox primary">
+            Computing (Formal)
+            <Checkbox
+              style={{ padding: "4px" }}
+              checked={showComputingFormal}
+              onChange={(e) => setShowComputingFormal(e.target.checked)}
+            />
+          </div>
+          <div className="checkbox primary">
+            English
+            <Checkbox
+              style={{ padding: "4px" }}
+              checked={showEnglish}
+              onChange={(e) => setShowEnglish(e.target.checked)}
+            />
+          </div>
+          <div className="checkbox primary">
+            Food Tech
+            <Checkbox
+              style={{ padding: "4px" }}
+              checked={showFoodTech}
+              onChange={(e) => setShowFoodTech(e.target.checked)}
+            />
+          </div>
+
+          <div className="checkbox primary">
+            Global Studies
+            <Checkbox
+              style={{ padding: "4px" }}
+              checked={showGlobalStudies}
+              onChange={(e) => setShowGlobalStudies(e.target.checked)}
+            />
+          </div>
+          <div className="checkbox primary">
+            Maths
+            <Checkbox
+              style={{ padding: "4px" }}
+              checked={showMaths}
+              onChange={(e) => setShowMaths(e.target.checked)}
+            />
+          </div>
+          <div className="checkbox primary">
+            Music
+            <Checkbox
+              style={{ padding: "4px" }}
+              checked={showMusic}
+              onChange={(e) => setShowMusic(e.target.checked)}
+            />
+          </div>
+          <div className="checkbox primary">
+            PE
+            <Checkbox
+              style={{ padding: "4px" }}
+              checked={showPE}
+              onChange={(e) => setShowPE(e.target.checked)}
+            />
+          </div>
+          <div className="checkbox primary">
+            PSHE (Primary)
+            <Checkbox
+              style={{ padding: "4px" }}
+              checked={showPSHEPrimary}
+              onChange={(e) => setShowPSHEPrimary(e.target.checked)}
+            />
+          </div>
+          <div className="checkbox primary">
+            PSHE (Secondary)
+            <Checkbox
+              style={{ padding: "4px" }}
+              checked={showPSHESecondary}
+              onChange={(e) => setShowPSHESecondary(e.target.checked)}
+            />
+          </div>
+          <div className="checkbox primary">
+            Science
+            <Checkbox
+              style={{ padding: "4px" }}
+              checked={showScience}
+              onChange={(e) => setShowScience(e.target.checked)}
+            />
+          </div>
         </div>
-        <div className="checkbox">
-          Autism
-          <Checkbox
-            style={{ padding: "4px" }}
-            checked={showAutism}
-            onChange={(e) => setShowAutism(e.target.checked)}
-          />
-        </div>
-        <div className="checkbox">
-          Computing (Preformal)
-          <Checkbox
-            style={{ padding: "4px" }}
-            checked={showComputingPreformal}
-            onChange={(e) => setShowComputingPreformal(e.target.checked)}
-          />
-        </div>
-        <div className="checkbox">
-          Computing (Formal)
-          <Checkbox
-            style={{ padding: "4px" }}
-            checked={showComputingFormal}
-            onChange={(e) => setShowComputingFormal(e.target.checked)}
-          />
-        </div>
-        <div className="checkbox">
-          English
-          <Checkbox
-            style={{ padding: "4px" }}
-            checked={showEnglish}
-            onChange={(e) => setShowEnglish(e.target.checked)}
-          />
-        </div>
-        <div className="checkbox">
-          Food Tech
-          <Checkbox
-            style={{ padding: "4px" }}
-            checked={showFoodTech}
-            onChange={(e) => setShowFoodTech(e.target.checked)}
-          />
-        </div>
-        <div className="checkbox">
-          Functional English
-          <Checkbox
-            style={{ padding: "4px" }}
-            checked={showFunEnglish}
-            onChange={(e) => setShowFunEnglish(e.target.checked)}
-          />
-        </div>
-        <div className="checkbox">
-          Functional ICT
-          <Checkbox
-            style={{ padding: "4px" }}
-            checked={showFunICT}
-            onChange={(e) => setShowFunICT(e.target.checked)}
-          />
-        </div>
-        <div className="checkbox">
-          Functional Maths
-          <Checkbox
-            style={{ padding: "4px" }}
-            checked={showFunMaths}
-            onChange={(e) => setShowFunMaths(e.target.checked)}
-          />
-        </div>
-        <div className="checkbox">
-          Global Studies
-          <Checkbox
-            style={{ padding: "4px" }}
-            checked={showGlobalStudies}
-            onChange={(e) => setShowGlobalStudies(e.target.checked)}
-          />
-        </div>
-        <div className="checkbox">
-          Life Skills Passport
-          <Checkbox
-            style={{ padding: "4px" }}
-            checked={showLifeSkills}
-            onChange={(e) => setShowLifeSkills(e.target.checked)}
-          />
-        </div>
-        <div className="checkbox">
-          Maths
-          <Checkbox
-            style={{ padding: "4px" }}
-            checked={showMaths}
-            onChange={(e) => setShowMaths(e.target.checked)}
-          />
-        </div>
-        <div className="checkbox">
-          Music
-          <Checkbox
-            style={{ padding: "4px" }}
-            checked={showMusic}
-            onChange={(e) => setShowMusic(e.target.checked)}
-          />
-        </div>
-        <div className="checkbox">
-          Parkside Foundation
-          <Checkbox
-            style={{ padding: "4px" }}
-            checked={showSteps}
-            onChange={(e) => setShowSteps(e.target.checked)}
-          />
-        </div>
-        <div className="checkbox">
-          PE
-          <Checkbox
-            style={{ padding: "4px" }}
-            checked={showPE}
-            onChange={(e) => setShowPE(e.target.checked)}
-          />
-        </div>
-        <div className="checkbox">
-          PSHE (Primary)
-          <Checkbox
-            style={{ padding: "4px" }}
-            checked={showPSHEPrimary}
-            onChange={(e) => setShowPSHEPrimary(e.target.checked)}
-          />
-        </div>
-        <div className="checkbox">
-          PSHE (Secondary)
-          <Checkbox
-            style={{ padding: "4px" }}
-            checked={showPSHESecondary}
-            onChange={(e) => setShowPSHESecondary(e.target.checked)}
-          />
-        </div>
-        <div className="checkbox">
-          Ready to Go
-          <Checkbox
-            style={{ padding: "4px" }}
-            checked={showRTG}
-            onChange={(e) => setShowRTG(e.target.checked)}
-          />
-        </div>
-        <div className="checkbox">
-          Science
-          <Checkbox
-            style={{ padding: "4px" }}
-            checked={showScience}
-            onChange={(e) => setShowScience(e.target.checked)}
-          />
+        <div className="checkboxes">
+          <div className="checkbox secondary">
+            Autism
+            <Checkbox
+              style={{ padding: "4px" }}
+              checked={showAutism}
+              onChange={(e) => setShowAutism(e.target.checked)}
+            />
+          </div>
+          <div className="checkbox secondary">
+            Functional English
+            <Checkbox
+              style={{ padding: "4px" }}
+              checked={showFunEnglish}
+              onChange={(e) => setShowFunEnglish(e.target.checked)}
+            />
+          </div>
+          <div className="checkbox secondary">
+            Functional ICT
+            <Checkbox
+              style={{ padding: "4px" }}
+              checked={showFunICT}
+              onChange={(e) => setShowFunICT(e.target.checked)}
+            />
+          </div>
+          <div className="checkbox secondary">
+            Functional Maths
+            <Checkbox
+              style={{ padding: "4px" }}
+              checked={showFunMaths}
+              onChange={(e) => setShowFunMaths(e.target.checked)}
+            />
+          </div>
+          <div className="checkbox secondary">
+            Life Skills Passport
+            <Checkbox
+              style={{ padding: "4px" }}
+              checked={showLifeSkills}
+              onChange={(e) => setShowLifeSkills(e.target.checked)}
+            />
+          </div>
+          <div className="checkbox secondary">
+            Parkside Foundation
+            <Checkbox
+              style={{ padding: "4px" }}
+              checked={showSteps}
+              onChange={(e) => setShowSteps(e.target.checked)}
+            />
+          </div>
+          <div className="checkbox secondary">
+            Ready to Go
+            <Checkbox
+              style={{ padding: "4px" }}
+              checked={showRTG}
+              onChange={(e) => setShowRTG(e.target.checked)}
+            />
+          </div>
         </div>
       </div>
       <div className="slider">

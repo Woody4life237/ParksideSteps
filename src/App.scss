@@ -109,6 +109,12 @@
   align-items: center;
   justify-content: center;
   padding: 8px;
+  &.primary {
+    color: darkblue;
+  }
+  &.secondary {
+    color: darkgreen;
+  }
 }
 
 .footer {
