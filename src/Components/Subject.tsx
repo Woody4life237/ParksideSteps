@@ -16,7 +16,6 @@ export default function Section({
     subcategory?: string
   ) {
     let filteredLines = getLines(lines);
-
     return filteredLines.map((line: string, index: number) => {
       return (
         <div
@@ -71,7 +70,7 @@ export default function Section({
     subjectNodeCopy.id = "tempSubject";
     subjectNodeCopy.appendChild(
       //@ts-ignore
-      subjectNode?.getElementsByClassName("heading")[0].cloneNode(true)
+      subjectNode?.getElementsByClassName("subject")[0].cloneNode(true)
     );
 
     let categoryNodeCopy: Node | undefined;
@@ -86,7 +85,7 @@ export default function Section({
       categoryNodeCopy.id = "tempCategory";
       categoryNodeCopy.appendChild(
         //@ts-ignore
-        categoryNode?.getElementsByClassName("subheading")[0].cloneNode(true)
+        categoryNode?.getElementsByClassName("category")[0].cloneNode(true)
       );
     }
 
@@ -103,7 +102,7 @@ export default function Section({
       subcategoryNodeCopy.appendChild(
         //@ts-ignore
         subcategoryNode
-          ?.getElementsByClassName("subsubheading")[0]
+          ?.getElementsByClassName("subcategory")[0]
           .cloneNode(true)
       );
     }
@@ -170,6 +169,7 @@ export default function Section({
   }
 
   function getLines(lines: []) {
+    if (!Array.isArray(lines)) return [];
     return lines.filter((line: string) => {
       return !search || line.toLowerCase().includes(search.toLowerCase());
     });
@@ -248,13 +248,32 @@ export default function Section({
     return show;
   }
 
+  function isShowSubSubCategory(subsubcategory, name) {
+    let show = false;
+    if (!search && !steps) {
+      show = true;
+    }
+    if (steps) {
+      show = isShowStep(name);
+    }
+    if (search) {
+      show = false;
+      subsubcategory.forEach((line) => {
+        if (line.toLowerCase().includes(search.toLowerCase())) {
+          show = true;
+        }
+      });
+    }
+    return show;
+  }
+
   return (
     <div
       className="group"
       id={subject}
       style={{ display: isShowSubject() ? "flex" : "none" }}
     >
-      <div id={subject} className="heading">
+      <div id={subject} className="subject">
         {subject}
       </div>
       {Object.keys(categories).map((category) => {
@@ -266,7 +285,7 @@ export default function Section({
               display: isShowCategory(categories[category]) ? "flex" : "none",
             }}
           >
-            <div className="subheading">{category}</div>
+            <div className="category">{category}</div>
             {Array.isArray(categories[category])
               ? showLines(categories[category], subject, category)
               : Object.keys(categories[category]).map((subcategory) => {
@@ -283,7 +302,7 @@ export default function Section({
                           : "none",
                       }}
                     >
-                      <div className="subsubheading">{subcategory}</div>
+                      <div className="subcategory">{subcategory}</div>
                       {Array.isArray(categories[category][subcategory])
                         ? showLines(
                             categories[category][subcategory],
@@ -293,13 +312,33 @@ export default function Section({
                           )
                         : Object.keys(categories[category][subcategory]).map(
                             (subsubcategory) => {
-                              return showLines(
-                                categories[category][subcategory][
-                                  subsubcategory
-                                ],
-                                subject,
-                                category,
-                                subcategory
+                              return (
+                                <div
+                                  className="group"
+                                  id={`${subject}-${category}-${subcategory}-${subsubcategory}`}
+                                  style={{
+                                    display: isShowSubSubCategory(
+                                      categories[category][subcategory][
+                                        subsubcategory
+                                      ],
+                                      subsubcategory
+                                    )
+                                      ? "flex"
+                                      : "none",
+                                  }}
+                                >
+                                  <div className="subsubcategory">
+                                    {subsubcategory}
+                                  </div>
+                                  {showLines(
+                                    categories[category][subcategory][
+                                      subsubcategory
+                                    ],
+                                    subject,
+                                    category,
+                                    subcategory
+                                  )}
+                                </div>
                               );
                             }
                           )}

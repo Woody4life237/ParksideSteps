@@ -14,7 +14,7 @@
   /* align-items: flex-start; */
 }
 
-.heading {
+.subject {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,7 +28,7 @@
   background-color: #8885c0;
 }
 
-.subheading {
+.category {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,7 +42,7 @@
   background-color: #aaaaaa;
 }
 
-.subsubheading {
+.subcategory {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -57,9 +57,24 @@
   background-color: #ff99ff;
 }
 
+.subsubcategory {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 84vw;
+  margin: 4px;
+  padding: 4px;
+  border: solid 1px black;
+  border-radius: 12px;
+  font-size: large;
+  font-weight: bold;
+  background-color: #ccad8c;
+}
+
 .line {
   font-size: larger;
-  width: 84vw;
+  width: 82vw;
   margin: 4px;
   padding: 16px;
   border: solid 1px black;
@@ -83,7 +98,7 @@
 
 .checkboxes {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   flex-wrap: wrap;
   width: 90vw;
   flex-direction: row;
