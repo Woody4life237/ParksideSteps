@@ -205,10 +205,20 @@ export default function Section({
     subjectsNode.removeChild(subjectNodeCopy);
   }
 
+  function isSearched(line: string) {
+    if (!search) {
+      return true;
+    }
+
+    let searchArray = search.split(" ");
+    let regex = new RegExp("(?=.*" + searchArray.join(")(?=.*") + ")", "i");
+    return regex.test(line);
+  }
+
   function getLines(lines: []) {
     if (!Array.isArray(lines)) return [];
     return lines.filter((line: string) => {
-      return !search || line.toLowerCase().includes(search.toLowerCase());
+      return !search || isSearched(line);
     });
   }
 
@@ -252,7 +262,7 @@ export default function Section({
       show = true;
     } else if (Array.isArray(category)) {
       category.forEach((line) => {
-        if (line.toLowerCase().includes(search.toLowerCase())) {
+        if (isSearched(line)) {
           show = true;
         }
       });
@@ -275,7 +285,7 @@ export default function Section({
     if (Array.isArray(subcategory)) {
       let foundLine = false;
       subcategory.forEach((line) => {
-        if (line.toLowerCase().includes(search.toLowerCase())) {
+        if (isSearched(line)) {
           foundLine = true;
         }
       });
@@ -302,7 +312,7 @@ export default function Section({
     if (search) {
       let foundLine = false;
       subsubcategory.forEach((line) => {
-        if (line.toLowerCase().includes(search.toLowerCase())) {
+        if (isSearched(line)) {
           foundLine = true;
         }
       });
