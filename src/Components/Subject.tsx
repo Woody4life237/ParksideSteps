@@ -210,7 +210,7 @@ export default function Section({
       return true;
     }
 
-    let searchArray = search.split(" ");
+    let searchArray = search.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").split(" ");
     let regex = new RegExp("(?=.*" + searchArray.join(")(?=.*") + ")", "i");
     return regex.test(line);
   }

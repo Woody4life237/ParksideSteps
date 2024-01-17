@@ -53,9 +53,7 @@ function App() {
   };
 
   let inputHandler = (e) => {
-    //convert input text to lower case
-    var lowerCase = e.target.value.toLowerCase();
-    setSearch(lowerCase);
+    setSearch(e.target.value.toLowerCase());
   };
 
   let showAll =
