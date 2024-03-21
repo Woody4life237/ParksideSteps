@@ -2035,7 +2035,6 @@ export const english = {
       "Spells words (with known graphemes) by identifying the phonemes and representing the phonemes with graphemes. (CV, VC and CVC words).",
       "Writes words, short captions or phrases associated with a prompt.",
       "Groups letters and leaves spaces between them as though they are writing separate words.",
-      "Innovates a sentence by substituting a verb for another appropriate verb.",
     ],
     "Step 4": [
       "50% of speech is intelligible to a familiar person.",
