@@ -675,6 +675,7 @@ function App() {
           />
         )}
       </div>
+      <div className="spacer"></div>
       <footer
         className="footer"
         style={{ display: isFooterVisible ? "flex" : "none" }}
