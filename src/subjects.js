@@ -1750,7 +1750,7 @@ export const english = {
       "(AP/LC) 4. Displays understanding of abstract language at TALC Level 2.",
       "(SPO) 5. Shows curiosity about content at a simple level and can correctly indicate pictures of characters and objects in response to questions such as 'Where is (the)…?' about a story or rhyme.",
       "(SIPI) 6. Engages in emergent role play - chooses items to dress up to be real or imaginary characters.",
-      "(M) 7. Joins in",
+      "(M) 7. Joins in with some familiar actions or repeats some familiar words, rhymes and phrases when prompted.",
     ],
     "Step 4": [
       "(AC) 1. Displays single-channelled attention - can only attend to one thing and will begin to transfer attention from task to adult.",
