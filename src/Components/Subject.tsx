@@ -226,7 +226,7 @@ export default function Section({
     if (!steps) {
       return true;
     }
-    const stepRegex = /^Step (\d+)$/;
+    const stepRegex = /^Step (\d+).*$/;
 
     const match = title.match(stepRegex);
 
