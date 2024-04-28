@@ -675,7 +675,15 @@ function App() {
           />
         )}
       </div>
-      <a style={{ display: "none" }} href="https://visitorbadge.io/status?path=https%3A%2F%2Fgithub.com%2FWoody4life237%2FParksideSteps"><img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2FWoody4life237%2FParksideSteps&countColor=%23263759" /></a>
+      <a
+        style={{ display: "none" }}
+        href="https://visitorbadge.io/status?path=https%3A%2F%2Fgithub.com%2FWoody4life237%2FParksideSteps"
+      >
+        <img
+          src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2FWoody4life237%2FParksideSteps&countColor=%23263759"
+          alt="VistorBadge"
+        />
+      </a>
       <div className="spacer"></div>
       <footer
         className="footer"
